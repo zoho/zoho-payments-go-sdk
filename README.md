@@ -140,10 +140,12 @@ Reserved headers (`Authorization`, `User-Agent`, `Accept`, `Content-Type`,
 | `client.Customers()` | Customers | All (List/Delete: US only) |
 | `client.Payments()` | Payments | All (Create: US only) |
 | `client.Refunds()` | Refunds | All |
+| `client.Payouts()` | Payouts and their transactions | All |
 | `client.PaymentMethods()` | Saved payment methods | US only |
 | `client.PaymentMethodSessions()` | Payment-method collection sessions | US only |
 | `client.Mandates()` | Recurring mandates | IN only |
 | `client.Collect()` | Virtual accounts (Collect) | IN only |
+| `client.SplitSettlement()` | Transfers, transfer reversals, connected accounts | IN only |
 
 Calling an edition-gated operation on the wrong edition returns an
 `*UnsupportedEditionError`.
@@ -186,6 +188,51 @@ refund, err := client.Refunds().Create("pay_abc", &zohopayments.RefundCreatePara
 	Reason: "requested_by_customer",
 	Type:   "full",
 })
+```
+
+### Payout
+
+```go
+payouts, err := client.Payouts().List(&zohopayments.PayoutListParams{
+	Status:  zohopayments.String("paid"),
+	PerPage: zohopayments.Int(50),
+})
+
+payout, err := client.Payouts().Get("payout_abc")
+txns, err := client.Payouts().ListTransactions("payout_abc", nil)
+```
+
+### Split settlement (IN)
+
+```go
+transfer, err := client.SplitSettlement().CreateTransfer(&zohopayments.TransferCreateParams{
+	PaymentID: "pay_abc",
+	TransferSplit: []zohopayments.TransferSplitParams{
+		{ConnectedAccountID: "acc_1", Amount: "300.00"},
+		{ConnectedAccountID: "acc_2", Amount: "200.00", Description: zohopayments.String("Vendor share")},
+	},
+})
+
+reversal, err := client.SplitSettlement().CreateTransferReversal(
+	&zohopayments.TransferReversalCreateParams{
+		TransferID:     "trf_abc",
+		ReversalAmount: "100.00",
+	},
+)
+
+err = client.SplitSettlement().CreateConnectedAccount(&zohopayments.ConnectedAccountCreateParams{
+	AccountName:         "Vendor One",
+	EmailID:             "vendor@example.com",
+	Pan:                 "ABCDE1234F",
+	Mcc:                 "5734",
+	BusinessDescription: "Software reseller",
+	ConnectedAccountBankAccount: &zohopayments.ConnectedAccountBankAccountParams{
+		RoutingNumber: "HDFC0000123",
+		AccountNumber: "50100123456789",
+	},
+})
+
+accounts, err := client.SplitSettlement().ListConnectedAccounts(nil)
 ```
 
 ### Mandate (IN)
