@@ -1,7 +1,5 @@
 package model
 
-import "encoding/json"
-
 // PayoutDetail is a single payout with its transaction summary, comments and destination account.
 type PayoutDetail struct {
 	PayoutID              *string                   `json:"payout_id,omitempty"`
@@ -13,9 +11,9 @@ type PayoutDetail struct {
 	FailureMessage        *string                   `json:"failure_message,omitempty"`
 	StatementDescriptor   *string                   `json:"statement_descriptor,omitempty"`
 	PayoutMethod          *string                   `json:"payout_method,omitempty"`
-	InitiatedTime         *string                   `json:"initiated_time,omitempty"`
-	ArrivalDate           *string                   `json:"arrival_date,omitempty"`
-	ProcessedDate         *string                   `json:"processed_date,omitempty"`
+	InitiatedTime         *String                   `json:"initiated_time,omitempty"`
+	ArrivalDate           *String                   `json:"arrival_date,omitempty"`
+	ProcessedDate         *String                   `json:"processed_date,omitempty"`
 	Type                  *string                   `json:"type,omitempty"`
 	Fee                   *Decimal                  `json:"fee,omitempty"`
 	FeeRate               *Decimal                  `json:"fee_rate,omitempty"`
@@ -71,27 +69,5 @@ type PayoutComment struct {
 	Type          *string  `json:"type,omitempty"`
 	Description   *string  `json:"description,omitempty"`
 	CreatedBy     *string  `json:"created_by,omitempty"`
-	CreatedTime   *string  `json:"created_time,omitempty"`
-}
-
-// UnmarshalJSON normalises the API's date/time values, which arrive as strings
-// from the list endpoints and as numbers from the detail endpoints.
-func (p *PayoutDetail) UnmarshalJSON(data []byte) error {
-	type alias PayoutDetail
-	patched, err := coerceStrings(data, "initiated_time", "processed_date", "arrival_date")
-	if err != nil {
-		return err
-	}
-	return json.Unmarshal(patched, (*alias)(p))
-}
-
-// UnmarshalJSON normalises the API's date/time values, which arrive as strings
-// from the list endpoints and as numbers from the detail endpoints.
-func (p *PayoutComment) UnmarshalJSON(data []byte) error {
-	type alias PayoutComment
-	patched, err := coerceStrings(data, "created_time")
-	if err != nil {
-		return err
-	}
-	return json.Unmarshal(patched, (*alias)(p))
+	CreatedTime   *String  `json:"created_time,omitempty"`
 }

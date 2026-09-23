@@ -10,9 +10,9 @@ type Payout struct {
 	FailureMessage        *string                   `json:"failure_message,omitempty"`
 	StatementDescriptor   *string                   `json:"statement_descriptor,omitempty"`
 	PayoutMethod          *string                   `json:"payout_method,omitempty"`
-	InitiatedTime         *string                   `json:"initiated_time,omitempty"`
-	ArrivalDate           *string                   `json:"arrival_date,omitempty"`
-	ProcessedDate         *string                   `json:"processed_date,omitempty"`
+	InitiatedTime         *String                   `json:"initiated_time,omitempty"`
+	ArrivalDate           *String                   `json:"arrival_date,omitempty"`
+	ProcessedDate         *String                   `json:"processed_date,omitempty"`
 	Type                  *string                   `json:"type,omitempty"`
 	PayoutBankReferenceID *string                   `json:"payout_bank_reference_id,omitempty"`
 	BankAccountDetails    *PayoutBankAccountDetails `json:"bank_account_details,omitempty"`

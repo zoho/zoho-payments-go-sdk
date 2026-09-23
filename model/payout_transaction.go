@@ -10,7 +10,7 @@ type PayoutTransaction struct {
 	Fee                 *Decimal `json:"fee,omitempty"`
 	Tax                 *Decimal `json:"tax,omitempty"`
 	TransactionType     *string  `json:"transaction_type,omitempty"`
-	TransactionTime     *string  `json:"transaction_time,omitempty"`
+	TransactionTime     *String  `json:"transaction_time,omitempty"`
 	Currency            *string  `json:"currency,omitempty"`
 	CustomerID          *string  `json:"customer_id,omitempty"`
 	CustomerName        *string  `json:"customer_name,omitempty"`

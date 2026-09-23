@@ -1,7 +1,5 @@
 package model
 
-import "encoding/json"
-
 // ConnectedAccountPayout is a single payout made to a connected account.
 type ConnectedAccountPayout struct {
 	PayoutID              *string                                   `json:"payout_id,omitempty"`
@@ -60,26 +58,4 @@ type ConnectedAccountPayoutAccountDetails struct {
 	Type                        *string `json:"type,omitempty"`
 	Country                     *string `json:"country,omitempty"`
 	Currency                    *string `json:"currency,omitempty"`
-}
-
-// UnmarshalJSON normalises the API's date/time values, which arrive as strings
-// from the list endpoints and as numbers from the detail endpoints.
-func (c *ConnectedAccountPayout) UnmarshalJSON(data []byte) error {
-	type alias ConnectedAccountPayout
-	patched, err := coerceStrings(data, "initiated_time", "processed_date", "arrival_date")
-	if err != nil {
-		return err
-	}
-	return json.Unmarshal(patched, (*alias)(c))
-}
-
-// UnmarshalJSON normalises the API's date/time values, which arrive as strings
-// from the list endpoints and as numbers from the detail endpoints.
-func (c *ConnectedAccountPayoutComment) UnmarshalJSON(data []byte) error {
-	type alias ConnectedAccountPayoutComment
-	patched, err := coerceStrings(data, "created_time")
-	if err != nil {
-		return err
-	}
-	return json.Unmarshal(patched, (*alias)(c))
 }
