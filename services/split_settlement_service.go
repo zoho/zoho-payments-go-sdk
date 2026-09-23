@@ -29,10 +29,10 @@ func NewSplitSettlementService(caller *internal.Caller, ed edition.Edition) *Spl
 	return &SplitSettlementService{caller: caller, edition: ed}
 }
 
-// supported reports whether split settlement is available on this edition. It is
-// an IN-only API, and the IN local development environment counts as IN here.
+// supported reports whether split settlement is available on this edition.
+// It is an IN-only API.
 func (s *SplitSettlementService) supported() bool {
-	return s.edition.IsIN() || s.edition.IsINLocal()
+	return s.edition.IsIN()
 }
 
 // CreateTransfer splits a payment across one or more connected accounts.
