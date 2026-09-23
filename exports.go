@@ -54,11 +54,13 @@ type (
 	PaymentSessionService       = services.PaymentSessionService
 	PaymentService              = services.PaymentService
 	RefundService               = services.RefundService
+	PayoutService               = services.PayoutService
 	CustomerService             = services.CustomerService
 	PaymentMethodService        = services.PaymentMethodService
 	PaymentMethodSessionService = services.PaymentMethodSessionService
 	MandateService              = services.MandateService
 	CollectService              = services.CollectService
+	SplitSettlementService      = services.SplitSettlementService
 )
 
 type (
@@ -101,6 +103,38 @@ type (
 	VirtualAccount              = model.VirtualAccount
 	VirtualAccountPayment       = model.VirtualAccountPayment
 	VirtualAccountPaymentMethod = model.VirtualAccountPaymentMethod
+
+	Payout                   = model.Payout
+	PayoutBankAccountDetails = model.PayoutBankAccountDetails
+	PayoutDetail             = model.PayoutDetail
+	PayoutTransactionSummary = model.PayoutTransactionSummary
+	PayoutTypeSummary        = model.PayoutTypeSummary
+	PayoutAccountDetails     = model.PayoutAccountDetails
+	PayoutComment            = model.PayoutComment
+	PayoutTransaction        = model.PayoutTransaction
+
+	Transfer                       = model.Transfer
+	TransferReversalEntry          = model.TransferReversalEntry
+	TransferPaymentDetails         = model.TransferPaymentDetails
+	TransferSummary                = model.TransferSummary
+	TransferCreateResponse         = model.TransferCreateResponse
+	TransferSplit                  = model.TransferSplit
+	TransferReversal               = model.TransferReversal
+	TransferReversalDetail         = model.TransferReversalDetail
+	TransferReversalCreateResponse = model.TransferReversalCreateResponse
+
+	ConnectedAccount                           = model.ConnectedAccount
+	ConnectedAccountBankAccount                = model.ConnectedAccountBankAccount
+	ConnectedAccountSummary                    = model.ConnectedAccountSummary
+	ConnectedAccountPayout                     = model.ConnectedAccountPayout
+	ConnectedAccountPayoutComment              = model.ConnectedAccountPayoutComment
+	ConnectedAccountPayoutTransactionSummary   = model.ConnectedAccountPayoutTransactionSummary
+	ConnectedAccountPayoutTransactionBreakdown = model.ConnectedAccountPayoutTransactionBreakdown
+	ConnectedAccountPayoutAccountDetails       = model.ConnectedAccountPayoutAccountDetails
+	ConnectedAccountPayoutSummary              = model.ConnectedAccountPayoutSummary
+	ConnectedAccountPayoutBankAccountDetails   = model.ConnectedAccountPayoutBankAccountDetails
+	ConnectedAccountPayoutTransaction          = model.ConnectedAccountPayoutTransaction
+	ConnectedAccountTransaction                = model.ConnectedAccountTransaction
 )
 
 type (
@@ -132,6 +166,20 @@ type (
 	VirtualAccountCreateParams           = param.VirtualAccountCreateParams
 	VirtualAccountUpdateParams           = param.VirtualAccountUpdateParams
 	VirtualAccountPaymentListParams      = param.VirtualAccountPaymentListParams
+
+	PayoutListParams            = param.PayoutListParams
+	PayoutTransactionListParams = param.PayoutTransactionListParams
+
+	TransferCreateParams              = param.TransferCreateParams
+	TransferSplitParams               = param.TransferSplitParams
+	TransferListParams                = param.TransferListParams
+	TransferReversalCreateParams      = param.TransferReversalCreateParams
+	TransferReversalListParams        = param.TransferReversalListParams
+	ConnectedAccountCreateParams      = param.ConnectedAccountCreateParams
+	ConnectedAccountBankAccountParams = param.ConnectedAccountBankAccountParams
+	ConnectedAccountListParams        = param.ConnectedAccountListParams
+
+	ConnectedAccountTransactionListParams = param.ConnectedAccountTransactionListParams
 )
 
 func String(value string) *string { return param.String(value) }

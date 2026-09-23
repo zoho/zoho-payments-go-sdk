@@ -18,10 +18,12 @@ type Client struct {
 	customers             *services.CustomerService
 	payments              *services.PaymentService
 	refunds               *services.RefundService
+	payouts               *services.PayoutService
 	paymentMethods        *services.PaymentMethodService
 	paymentMethodSessions *services.PaymentMethodSessionService
 	mandates              *services.MandateService
 	collect               *services.CollectService
+	splitSettlement       *services.SplitSettlementService
 }
 
 func (c *Client) Edition() Edition { return c.edition }
@@ -36,6 +38,8 @@ func (c *Client) Payments() *services.PaymentService { return c.payments }
 
 func (c *Client) Refunds() *services.RefundService { return c.refunds }
 
+func (c *Client) Payouts() *services.PayoutService { return c.payouts }
+
 func (c *Client) PaymentMethods() *services.PaymentMethodService { return c.paymentMethods }
 
 func (c *Client) PaymentMethodSessions() *services.PaymentMethodSessionService {
@@ -45,6 +49,8 @@ func (c *Client) PaymentMethodSessions() *services.PaymentMethodSessionService {
 func (c *Client) Mandates() *services.MandateService { return c.mandates }
 
 func (c *Client) Collect() *services.CollectService { return c.collect }
+
+func (c *Client) SplitSettlement() *services.SplitSettlementService { return c.splitSettlement }
 
 func (c *Client) UpdateToken(newAccessToken string) {
 	c.tokens.Update(newAccessToken)

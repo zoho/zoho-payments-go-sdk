@@ -102,6 +102,11 @@ func (c *Caller) PostInto(path string, body []byte, result any, keys ...string) 
 	return DecodeEnvelope([]byte(response.Body()), result, keys...)
 }
 
+func (c *Caller) Post(path string, body []byte) error {
+	_, err := c.Do(znet.POST, path, nil, body)
+	return err
+}
+
 func (c *Caller) PutInto(path string, body []byte, result any, keys ...string) error {
 	response, err := c.Do(znet.PUT, path, nil, body)
 	if err != nil {
