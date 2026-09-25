@@ -19,26 +19,31 @@ func MarshalBody(value any) ([]byte, error) {
 	return bytes.TrimRight(buffer.Bytes(), "\n"), nil
 }
 
-func DecodeEnvelope(body []byte, result any, keys ...string) error {
-	if len(bytes.TrimSpace(body)) == 0 {
-		return nil
+func DecodeEnvelope(body []byte, result any, path ...string) error {
+	current := bytes.TrimSpace(body)
+	if len(current) == 0 {
+		return fmt.Errorf("zohopayments: response body is null; expected object at key path %v", path)
 	}
-	var root map[string]json.RawMessage
-	if err := json.Unmarshal(body, &root); err != nil {
-		return fmt.Errorf("zohopayments: failed to decode response body: %w", err)
-	}
-	for _, key := range keys {
-		if raw, ok := root[key]; ok {
-			if err := json.Unmarshal(raw, result); err != nil {
-				return fmt.Errorf("zohopayments: failed to decode %q: %w", key, err)
-			}
-			return nil
+	for _, key := range path {
+		var node map[string]json.RawMessage
+		if err := json.Unmarshal(current, &node); err != nil || node == nil {
+			return fmt.Errorf("zohopayments: response body is null; expected object at key path %v", path)
 		}
+		raw, ok := node[key]
+		if !ok || !isJSONObject(raw) {
+			return fmt.Errorf("zohopayments: response body missing expected resource key %q in path %v", key, path)
+		}
+		current = bytes.TrimSpace(raw)
 	}
-	if err := json.Unmarshal(body, result); err != nil {
+	if err := json.Unmarshal(current, result); err != nil {
 		return fmt.Errorf("zohopayments: failed to decode response body: %w", err)
 	}
 	return nil
+}
+
+func isJSONObject(raw json.RawMessage) bool {
+	trimmed := bytes.TrimSpace(raw)
+	return len(trimmed) > 0 && trimmed[0] == '{'
 }
 
 func ListEnvelope(body []byte, key string) ([]json.RawMessage, model.PageContext, error) {

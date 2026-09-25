@@ -74,10 +74,12 @@ func NewClient(cfg *Config) (*Client, error) {
 	client.customers = services.NewCustomerService(caller, cfg.Edition)
 	client.payments = services.NewPaymentService(caller, cfg.Edition)
 	client.refunds = services.NewRefundService(caller, cfg.Edition)
+	client.payouts = services.NewPayoutService(caller, cfg.Edition)
 	client.paymentMethods = services.NewPaymentMethodService(caller, cfg.Edition)
 	client.paymentMethodSessions = services.NewPaymentMethodSessionService(caller, cfg.Edition)
 	client.mandates = services.NewMandateService(caller, cfg.Edition)
 	client.collect = services.NewCollectService(caller, cfg.Edition)
+	client.splitSettlement = services.NewSplitSettlementService(caller, cfg.Edition)
 
 	return client, nil
 }
