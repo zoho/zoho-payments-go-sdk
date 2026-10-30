@@ -9,6 +9,6 @@ type TransferReversal struct {
 	ConnectedAccountName *string  `json:"connected_account_name,omitempty"`
 	Status               *string  `json:"status,omitempty"`
 	FailureCode          *string  `json:"failure_code,omitempty"`
-	CreatedTime          *string  `json:"created_time,omitempty"`
+	CreatedTime          *String  `json:"created_time,omitempty"`
 	TransferID           *string  `json:"transfer_id,omitempty"`
 }
