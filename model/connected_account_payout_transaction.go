@@ -7,7 +7,7 @@ type ConnectedAccountPayoutTransaction struct {
 	TransactionID         *string  `json:"transaction_id,omitempty"`
 	ParentTransactionID   *string  `json:"parent_transaction_id,omitempty"`
 	TransactionType       *string  `json:"transaction_type,omitempty"`
-	TransactionTime       *string  `json:"transaction_time,omitempty"`
+	TransactionTime       *String  `json:"transaction_time,omitempty"`
 	NetAmount             *Decimal `json:"net_amount,omitempty"`
 	Amount                *Decimal `json:"amount,omitempty"`
 	Currency              *string  `json:"currency,omitempty"`

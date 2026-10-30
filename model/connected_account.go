@@ -16,8 +16,8 @@ type ConnectedAccount struct {
 	StatementDescriptorRestrictedChars *string                       `json:"statement_descriptor_restricted_chars,omitempty"`
 	CreatedBy                          *string                       `json:"created_by,omitempty"`
 	LastModifiedBy                     *string                       `json:"last_modified_by,omitempty"`
-	CreatedTime                        *string                       `json:"created_time,omitempty"`
-	LastModifiedTime                   *string                       `json:"last_modified_time,omitempty"`
+	CreatedTime                        *String                       `json:"created_time,omitempty"`
+	LastModifiedTime                   *String                       `json:"last_modified_time,omitempty"`
 	ConnectedAccountBankAccounts       []ConnectedAccountBankAccount `json:"connected_account_bank_accounts,omitempty"`
 }
 
@@ -29,6 +29,6 @@ type ConnectedAccountBankAccount struct {
 	LastFourDigits                *string `json:"last_four_digits,omitempty"`
 	CreatedBy                     *string `json:"created_by,omitempty"`
 	LastModifiedBy                *string `json:"last_modified_by,omitempty"`
-	CreatedTime                   *string `json:"created_time,omitempty"`
-	LastModifiedTime              *string `json:"last_modified_time,omitempty"`
+	CreatedTime                   *String `json:"created_time,omitempty"`
+	LastModifiedTime              *String `json:"last_modified_time,omitempty"`
 }

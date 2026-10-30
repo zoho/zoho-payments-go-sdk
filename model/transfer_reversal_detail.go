@@ -13,5 +13,5 @@ type TransferReversalDetail struct {
 	FailureCode          *string  `json:"failure_code,omitempty"`
 	Description          *string  `json:"description,omitempty"`
 	Currency             *string  `json:"currency,omitempty"`
-	CreatedTime          *string  `json:"created_time,omitempty"`
+	CreatedTime          *String  `json:"created_time,omitempty"`
 }

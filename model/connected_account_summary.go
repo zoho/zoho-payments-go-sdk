@@ -9,6 +9,6 @@ type ConnectedAccountSummary struct {
 	TransferStatus     *string `json:"transfer_status,omitempty"`
 	CreatedBy          *string `json:"created_by,omitempty"`
 	LastModifiedBy     *string `json:"last_modified_by,omitempty"`
-	CreatedTime        *string `json:"created_time,omitempty"`
-	LastModifiedTime   *string `json:"last_modified_time,omitempty"`
+	CreatedTime        *String `json:"created_time,omitempty"`
+	LastModifiedTime   *String `json:"last_modified_time,omitempty"`
 }

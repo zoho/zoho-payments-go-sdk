@@ -16,5 +16,5 @@ type TransferSummary struct {
 	Status               *string  `json:"status,omitempty"`
 	FailureCode          *string  `json:"failure_code,omitempty"`
 	ReversedAmount       *Decimal `json:"reversed_amount,omitempty"`
-	CreatedTime          *string  `json:"created_time,omitempty"`
+	CreatedTime          *String  `json:"created_time,omitempty"`
 }

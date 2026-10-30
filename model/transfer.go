@@ -18,7 +18,7 @@ type Transfer struct {
 	FailureCode                *string                 `json:"failure_code,omitempty"`
 	ReversedAmount             *Decimal                `json:"reversed_amount,omitempty"`
 	AvailableAmountForReversal *Decimal                `json:"available_amount_for_reversal,omitempty"`
-	CreatedTime                *string                 `json:"created_time,omitempty"`
+	CreatedTime                *String                 `json:"created_time,omitempty"`
 	Reversals                  []TransferReversalEntry `json:"reversals,omitempty"`
 	PaymentDetails             *TransferPaymentDetails `json:"payment_details,omitempty"`
 }
@@ -31,7 +31,7 @@ type TransferReversalEntry struct {
 	FeeAmount   *Decimal `json:"fee_amount,omitempty"`
 	Description *string  `json:"description,omitempty"`
 	Status      *string  `json:"status,omitempty"`
-	CreatedTime *string  `json:"created_time,omitempty"`
+	CreatedTime *String  `json:"created_time,omitempty"`
 }
 
 // TransferPaymentDetails is the payment a transfer was split from.
@@ -41,6 +41,6 @@ type TransferPaymentDetails struct {
 	Currency             *string  `json:"currency,omitempty"`
 	PaymentDateFormatted *string  `json:"payment_date_formatted,omitempty"`
 	StatusFormatted      *string  `json:"status_formatted,omitempty"`
-	PaymentDate          *string  `json:"payment_date,omitempty"`
+	PaymentDate          *String  `json:"payment_date,omitempty"`
 	Status               *string  `json:"status,omitempty"`
 }
